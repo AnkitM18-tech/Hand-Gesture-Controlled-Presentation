@@ -24,7 +24,7 @@ buttonPressed = False
 buttonCounter = 0
 buttonDelay = 10
 annotations = [[]]
-annotationNumber = -1
+annotationNumber = 0
 annotationStart = False
 
 # Hand Detector
@@ -56,7 +56,6 @@ while True:
         indexFinger = xVal, yVal
 
         if cy <= gestureThreshold: #if hand is at the height of the face
-            # annotationStart = False
             # Gesture-1 - Left
             if fingers == [1,0,0,0,0]:
                 # print("Left")
@@ -64,7 +63,7 @@ while True:
                 if imgNumber > 0:
                     imgNumber -= 1
                     annotations = [[]]
-                    annotationNumber = -1
+                    annotationNumber = 0
                     buttonPressed = True
             # Gesture-2 - Right
             if fingers == [0,0,0,0,1]:
@@ -73,7 +72,7 @@ while True:
                 if imgNumber < len(pathImages) - 1:
                     imgNumber += 1
                     annotations = [[]]
-                    annotationNumber = -1
+                    annotationNumber = 0
                     buttonPressed = True
         # Gesture-3 - Show Pointer
         if fingers == [0,1,1,0,0]:
@@ -95,7 +94,7 @@ while True:
         if fingers == [0,1,1,1,0]:
             # print("Erase")
             if annotations:
-                if annotationNumber >= -1:
+                if annotationNumber >= 0:
                     annotations.pop(-1)
                     annotationNumber -= 1
                     buttonPressed = True
